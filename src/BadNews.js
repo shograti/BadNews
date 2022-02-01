@@ -5,7 +5,7 @@ const BadNews = (props) => {
     const sortArticles = ()=>{
         
             return props.badNews.map(uniqueNews =>
-                <UniqueNews key={uniqueNews.key} uniqueNews={uniqueNews}/>)
+                <UniqueNews key={uniqueNews[uniqueNews]} uniqueNews={uniqueNews}/>)
         
     }
     return (

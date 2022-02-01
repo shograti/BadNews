@@ -1,5 +1,5 @@
 import './App.css';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import BadNews from './BadNews';
 const accessKey = ""
 function App() {
@@ -7,7 +7,7 @@ function App() {
   const [badNews, setBadNews] = useState([]);
   
   async function fetchNews() {
-    const response = await fetch(`http://api.mediastack.com/v1/news?access_key=${accessKey}&countries=fr`)
+    const response = await fetch(`http://api.mediastack.com/v1/news?access_key=${accessKey}&countries=fr&limit=100`)
     .then(response=>response.json())
        setBadNews(response.data);
     }
