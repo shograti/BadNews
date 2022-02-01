@@ -1,24 +1,32 @@
-import logo from './logo.svg';
 import './App.css';
-
+import { useEffect, useState } from 'react';
+import BadNews from './BadNews';
+const accessKey = ""
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+
+  const [badNews, setBadNews] = useState([]);
+  
+  async function fetchNews() {
+    const response = await fetch(`http://api.mediastack.com/v1/news?access_key=${accessKey}&countries=fr`)
+    .then(response=>response.json())
+       setBadNews(response.data);
+    }
+
+
+
+const renderNews=()=>{
+  console.log(badNews)
+}
+     
+
+     
+  return ( <div>
+    <button onClick={()=>{fetchNews()}}>set moi les news</button>
+    <button onClick={()=>{renderNews()}}>console log moi les news</button>
+
+    <BadNews badNews={badNews}/>
+  </div>
+ 
   );
 }
 
